@@ -41,16 +41,20 @@ const refrecurse = function (object, reflog) {
     return out;
   }
 
+  // Don't overwrite the current object silly billy, thats a recipe
+  // for distater. Create a new object to mimic the old.
+  let object_out = {};
+
   // For standard objects, loop over each property.
   for(var i in object) {
-    object[i] = refrecurse(object[i], reflog);
+    object_out[i] = refrecurse(object[i], reflog);
   }
 
   // Remove this reference, see above.
   reflog.splice(reflog.length - 1, 1);
 
   // Return out to the calling recursion
-  return object;
+  return object_out;
 };
 
 
