@@ -1,3 +1,9 @@
+// Configuration options. By default, functions are not displayed,
+// circular references are displayed as [Circular]
+let options = {
+  function_display: undefined,
+  circular_display: '[Circular]'
+};
 
 // Main recursion function.
 const refrecurse = function (object, reflog) {
@@ -6,7 +12,7 @@ const refrecurse = function (object, reflog) {
   // thats JSON's thing. But could probably make this
   // optional to have a more console loggy feel
   if (typeof object === 'function') {
-    return;
+    return options.function_display;
   }
 
   // Primitives and null will stringify just fine.
@@ -21,7 +27,7 @@ const refrecurse = function (object, reflog) {
   // If this object exists already at a higher level,
   // then this is a circular reference.
   if(reflog.indexOf(object) > -1) {
-    return '[Circular]';
+    return options.circular_display;
   }
 
   // This is a referenced object, so add it to the 
@@ -62,5 +68,10 @@ const refrecurse = function (object, reflog) {
 
 const exp = (object, ...params) => 
   JSON.stringify(refrecurse(object, []), ...params);
+
+// Allow configuration of circular and function displays.
+exp.configure = params => {
+  options = Object.assign(options, params);
+};
 
 module.exports = exp;

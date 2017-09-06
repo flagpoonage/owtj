@@ -1,6 +1,6 @@
 {
   "name": "owtj",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A very simple JSON stringifier for NodeJS that takes care or circular references.",
   "main": "index.js",
   "scripts": {
