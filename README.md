@@ -1,5 +1,8 @@
 # owtj
+[![npm version](https://badge.fury.io/js/owtj.svg)](https://badge.fury.io/js/owtj)
+
 A very simple JSON stringifier for NodeJS that takes care or circular references.
+
 
 ## Usage
 
