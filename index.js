@@ -1,3 +1,6 @@
+const { Buffer } = require('buffer');
+const http = require('http');
+
 // Configuration options. By default, functions are not displayed,
 // circular references are displayed as [Circular]
 let options = {
@@ -45,6 +48,12 @@ const refrecurse = function (object, reflog) {
     // used in multiple places being marked as circular.
     reflog.splice(reflog.length - 1, 1);
     return out;
+  }
+
+  // Buffers often in occur in HTTP responses, generally
+  // we don't want the individual bytes to be logged.
+  if (Buffer.isBuffer(object)) {
+    return Buffer.toString('utf8');
   }
 
   // Don't overwrite the current object silly billy, thats a recipe

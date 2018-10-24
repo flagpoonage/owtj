@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/flagpoonage/owtj/issues"
   },
-  "homepage": "https://github.com/flagpoonage/owtj#readme"
+  "homepage": "https://github.com/flagpoonage/owtj#readme",
+  "devDependencies": {
+    "eslint": "^5.7.0"
+  }
 }
